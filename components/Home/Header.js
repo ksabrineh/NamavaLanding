@@ -11,8 +11,8 @@ import Logo from "@/public/images/Logo shatel.png";
 function Header() {
   const router = useRouter();
   return (
-    <div className="h-16 bg-white shadow-xl border border-black w-full flex justify-around gap-2 items-center">
-      <div className="flex gap-20 items-center w-[50%]">
+    <div className="h-16 bg-white shadow-xl border border-black w-full flex-wrap flex justify-around gap-2 items-center">
+      <div className="flex gap-20 items-center md:!w-[50%]">
         <div className="w-14 h-14 flex justify-center items-center">
           <Image
             width={200}
@@ -22,7 +22,7 @@ function Header() {
             className="object-contain !w-full !h-full"
           />
         </div>
-        <div className="flex gap-10 text-sm items-center">
+        <div className="md:!flex hidden gap-10 text-sm items-center">
           <Link href="#Suggestions">
             <div>پیشنهادات</div>
           </Link>
@@ -37,7 +37,7 @@ function Header() {
           </Link>
         </div>
       </div>
-      <div className="w-[20%] flex gap-4 justify-around items-center">
+      <div className="md:!w-[20%] flex gap-4 justify-around items-center">
         <Btn
           label="شاتل"
           colored={true}

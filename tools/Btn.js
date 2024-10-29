@@ -11,7 +11,7 @@ const Btn = ({
   return (
     <div
       onClick={disable ? ()=>{} : onClick}
-      className={`w-32 h-10 ${disable && "opacity-50 cursor-not-allowed"}`}
+      className={`md:!w-32 w-20 h-10 ${disable && "opacity-50 cursor-not-allowed"}`}
     >
       <button
         type="button"

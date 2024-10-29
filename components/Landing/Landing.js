@@ -11,7 +11,7 @@ import titleLinePhoto from "@/public/images/title line.png";
 function Landing() {
   return (
     <div className="w-full bg-[#f3f3f3] shadow-md shadow-orange-300">
-      <div className="w-[50%] p-10 flex flex-col gap-4">
+      <div className="md:!w-[50%] w-full md:!p-10 p-5 flex flex-col gap-4">
         <div>
           <p>دریافت سرویس</p>
           <Image
@@ -28,15 +28,15 @@ function Landing() {
           تماس بگیرند.
         </p>
       </div>
-      <div className="bg-[url('/images/background-feedback-home-1%201.jpg')]  flex gap-2 justify-between px-10 items-center w-full bg-cover bg-no-repeat bg-top h-[60vh]">
+      <div className="bg-[url('/images/background-feedback-home-1%201.jpg')]  flex flex-col md:!flex-row gap-2 justify-between md:!px-10 px-5 items-center w-full bg-cover bg-no-repeat bg-top md:!h-[60vh]">
         <Form />
-        <div className="relative w-[40%] flex justify-center items-center h-full">
+        <div className="relative md:!w-[40%] w-full flex justify-center items-center h-full">
           <Image
             width={200}
             height={200}
             alt="CloudPhoto"
             src={CloudPhoto}
-            className="w-20 h-20 top-4 left-5 absolute object-contain flex justify-center items-center"
+            className="w-20 h-20 md:!top-4 top-2 md:!left-5 left-2 absolute object-contain flex justify-center items-center"
           />
 
           <Image
@@ -44,7 +44,7 @@ function Landing() {
             height={200}
             alt="WifiPhoto"
             src={WifiPhoto}
-            className="w-20 h-20 top-10 right-32 absolute object-contain flex justify-center items-center"
+            className="w-20 h-20 md:!top-10 top-2 md:!right-32 right-2 absolute object-contain flex justify-center items-center"
           />
 
           <Image
@@ -52,7 +52,7 @@ function Landing() {
             height={400}
             alt="Photo"
             src={Photo}
-            className="!w-full !h-full object-contain flex justify-center items-center"
+            className="!w-full !h-full object-contain flex justify-center items-center md:!pt-0 pt-10"
           />
         </div>
       </div>
