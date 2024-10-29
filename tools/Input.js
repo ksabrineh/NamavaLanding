@@ -1,46 +1,34 @@
 "use client";
-import { RemoveRedEye } from "@mui/icons-material";
-import { InputAdornment } from "@mui/material";
+import React from "react";
+
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
 
 const Input = ({
-  lable = "",
+  lebel = "",
   className,
-  icon,
   dir = "rtl",
-  infoIcon,
   type = "text",
   name = "",
+  requierd = false,
+  onChange,
+  value = "",
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-2">
+      <div className="text-sm font-normal flex gap-1">
+        {lebel && lebel}
+        {requierd && <spn className="text-red-500 font-bold">*</spn>}
+      </div>
       <TextField
         id="outlined-basic"
         variant="outlined"
         autoComplete="off"
+        value={value && value}
+        onChange={onChange ? onChange : () => {}}
         name={name}
         dir={dir}
-        type={showPassword && type === "password" ? "text" : type}
-        label={lable}
+        type={type && type}
         className={`text-black focus:!border-none ${className && className}`}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start">
-              {type === "password" ? (
-                <div onClick={()=>setShowPassword(!showPassword)}>
-                  <RemoveRedEye fontSize="small" />
-                </div>
-              ) : (
-                infoIcon
-              )}
-            </InputAdornment>
-          ),
-          startAdornment: (
-            <InputAdornment position="start">{icon && icon}</InputAdornment>
-          ),
-        }}
         sx={{
           "& .MuiInputBase-root": {
             height: 35,
@@ -52,7 +40,7 @@ const Input = ({
           },
           "& .MuiOutlinedInput-root": {
             "& input": {
-              paddingLeft: "0px",
+              paddingLeft: "10px",
               paddingRight: "10px",
             },
             "&.Mui-focused fieldset": {

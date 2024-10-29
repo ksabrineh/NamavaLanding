@@ -1,8 +1,13 @@
+import Footer from "@/components/Home/Footer";
+import Header from "@/components/Home/Header";
+import Landing from "@/components/Landing/Landing";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center font-bold">
-      comming soon...
+    <div className="min-h-screen max-h-fit w-full flex flex-col items-center">
+      <Header />
+      <Landing />
+      <Footer />
     </div>
   );
 }
