@@ -11,7 +11,7 @@ import titleLinePhoto from "@/public/images/title line.png";
 function Landing() {
   return (
     <div className="w-full bg-[#f3f3f3] shadow-md shadow-orange-300">
-      <div className="md:!w-[50%] w-full md:!p-10 p-5 flex flex-col gap-4">
+      <div className="md:!w-[50%] w-full md:!p-10 p-5 flex md:!text-base text-sm flex-col gap-4">
         <div>
           <p>دریافت سرویس</p>
           <Image

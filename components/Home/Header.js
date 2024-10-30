@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 
 import Link from "next/link";
@@ -6,13 +6,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import Btn from "@/tools/Btn";
+import HamburgerMenu from "./HamburgerMenu";
 import Logo from "@/public/images/Logo shatel.png";
 
 function Header() {
   const router = useRouter();
   return (
     <div className="h-16 bg-white shadow-xl border border-black w-full flex-wrap flex justify-around gap-2 items-center">
-      <div className="flex gap-20 items-center md:!w-[50%]">
+      <div className="flex md:!gap-20 gap-2 items-center md:!w-[50%]">
+        <div className="md:!hidden block">
+          <HamburgerMenu />
+        </div>
         <div className="w-14 h-14 flex justify-center items-center">
           <Image
             width={200}
@@ -37,13 +41,16 @@ function Header() {
           </Link>
         </div>
       </div>
-      <div className="md:!w-[20%] flex gap-4 justify-around items-center">
+      <div className="md:!w-[20%] flex md:!gap-4 gap-2 justify-around items-center">
         <Btn
           label="شاتل"
           colored={true}
           onClick={() => router.push("https://my.shatel.ir/")}
         ></Btn>
-        <Btn label="نماوا" onClick={() => router.push("https://www.namava.ir/home")}></Btn>
+        <Btn
+          label="نماوا"
+          onClick={() => router.push("https://www.namava.ir/home")}
+        ></Btn>
       </div>
     </div>
   );
