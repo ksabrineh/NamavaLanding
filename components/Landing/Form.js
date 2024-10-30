@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import Btn from "@/tools/Btn";
 import Input from "@/tools/Input";
+import useInputValidation from "@/hooks/UseValidation";
 
 import { Dialog } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
@@ -19,6 +20,16 @@ function Form() {
     caracter: "",
   });
 
+  //validations
+  const phonePattern = /((0?9)|(\+?989))\d{9}/;
+  const phoneValidation = useInputValidation(formValue.phone, phonePattern);
+
+  const telephonePattern = /^0\d{2,3}\d{8}$/;
+  const telephoneValidation = useInputValidation(
+    formValue.telephone,
+    telephonePattern
+  );
+
   //handlers
   const changeHandler = (event) => {
     setFormValue((prev) => ({
@@ -32,7 +43,9 @@ function Form() {
       formValue.name &&
       formValue.telephone &&
       formValue.phone &&
-      formValue.caracter
+      formValue.caracter &&
+      phoneValidation.isValid &&
+      telephoneValidation.isValid
     ) {
       return false;
     } else {
@@ -64,27 +77,59 @@ function Form() {
         requierd={true}
         onChange={changeHandler}
         value={formValue.name}
+        status={formValue.name ? "success" : ""}
       />
-      <Input
-        lebel="شماره تماس ثابت ( به همراه کد شهر )"
-        className="!w-full"
-        name="telephone"
-        type="tel"
-        dir="ltr"
-        requierd={true}
-        onChange={changeHandler}
-        value={formValue.telephone}
-      />
-      <Input
-        lebel="شماره موبایل"
-        className="!w-full"
-        name="phone"
-        type="tel"
-        dir="ltr"
-        requierd={true}
-        onChange={changeHandler}
-        value={formValue.phone}
-      />
+      <div>
+        <Input
+          lebel="شماره تماس ثابت ( به همراه کد شهر )"
+          className="!w-full"
+          name="telephone"
+          type="tel"
+          dir="ltr"
+          requierd={true}
+          onChange={changeHandler}
+          value={formValue.telephone}
+          maxLengthNum={11}
+          status={
+            formValue.telephone
+              ? telephoneValidation.isValid
+                ? "success"
+                : "error"
+              : ""
+          }
+        />
+        {formValue.telephone && !telephoneValidation.isValid && (
+          <p className="text-xs text-red-500">
+            شماره تماس ثابت وارد شده صحیح نمی باشد!
+          </p>
+        )}
+      </div>
+      <div>
+        <Input
+          lebel="شماره موبایل"
+          className="!w-full"
+          name="phone"
+          type="tel"
+          dir="ltr"
+          requierd={true}
+          onChange={changeHandler}
+          value={formValue.phone}
+          maxLengthNum={11}
+          status={
+            formValue.phone
+              ? phoneValidation.isValid
+                ? "success"
+                : "error"
+              : ""
+          }
+        />
+        {formValue.phone && !phoneValidation.isValid && (
+          <p className="text-xs text-red-500">
+            شماره موبایل وارد شده صحیح نمی باشد!
+          </p>
+        )}
+      </div>
+
       <Input
         lebel="لطفا کاراکترها را تایپ کنید"
         className="!w-full"
@@ -94,6 +139,7 @@ function Form() {
         requierd={true}
         onChange={changeHandler}
         value={formValue.caracter}
+        status={formValue.caracter ? "success" : ""}
       />
       <Btn
         label="ارسال"

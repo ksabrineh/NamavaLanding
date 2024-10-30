@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 
 const Input = ({
@@ -12,23 +11,40 @@ const Input = ({
   requierd = false,
   onChange,
   value = "",
+  maxLengthNum,
+  status = "",
 }) => {
+  const [border, setBorder] = useState("gray");
+
+  useEffect(() => {
+    if (status === "success") {
+      setBorder("green");
+    } else if (status === "error") {
+      setBorder("red");
+    } else {
+      setBorder("gray");
+    }
+  }, [status, value]);
+
   return (
     <div className="w-full flex flex-col gap-2">
       <div className="text-sm font-normal flex gap-1">
         {lebel && lebel}
-        {requierd && <spn className="text-red-500 font-bold">*</spn>}
+        {requierd && <span className="text-red-500 font-bold">*</span>}
       </div>
       <TextField
         id="outlined-basic"
         variant="outlined"
         autoComplete="off"
-        value={value && value}
-        onChange={onChange ? onChange : () => {}}
+        value={value}
+        inputProps={{ maxLength: maxLengthNum }}
+        onChange={onChange || (() => {})}
         name={name}
         dir={dir}
-        type={type && type}
-        className={`text-black focus:!border-none ${className && className}`}
+        type={type}
+        className={`text-black focus:!border-none ${
+          className && className
+        }`}
         sx={{
           "& .MuiInputBase-root": {
             height: 35,
@@ -43,11 +59,17 @@ const Input = ({
               paddingLeft: "10px",
               paddingRight: "10px",
             },
+            "& fieldset": {
+              borderColor: border,
+              borderWidth:"2px"
+            },
             "&.Mui-focused fieldset": {
-              borderColor: "gray",
+              borderColor: border,
+              borderWidth:"2px"
             },
             "&:hover fieldset": {
-              borderColor: "gray",
+              borderColor: border,
+              borderWidth:"2px"
             },
           },
           "& .MuiInputLabel-root": {
@@ -60,5 +82,4 @@ const Input = ({
     </div>
   );
 };
-
 export default Input;
