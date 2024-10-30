@@ -68,7 +68,7 @@ function Form() {
   };
 
   return (
-    <div className="bg-white flex flex-col gap-4 justify-center p-5 rounded-xl md:!w-[50%] w-full">
+    <div className="bg-white flex flex-col gap-4 shadow-md justify-center p-5 rounded-xl md:!w-[50%] w-full">
       <Input
         lebel="نام و نام خانوادگی"
         className="!w-full"
